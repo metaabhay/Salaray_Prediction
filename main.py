@@ -12,7 +12,11 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
 # ---------------- PAGE CONFIG ----------------
-st.set_page_config(layout="wide")
+st.set_page_config(
+    page_title="Salary Predictor 💰",
+    page_icon="💼",
+    layout="wide"
+)
 
 # ---------------- UI STYLING ----------------
 st.markdown("""
@@ -31,10 +35,13 @@ st.markdown("""
 
 # ---------------- HEADER ----------------
 st.markdown("""
-<h1 style='text-align: center; color: #4CAF50;'>💼 Interactive ML Pipeline Dashboard</h1>
-<p style='text-align: center;'>Analyze, Train & Predict Salary using ML 🚀</p>
+<h1 style='text-align: center; color: #4CAF50;'>
+💰 Salary Prediction Dashboard
+</h1>
+<p style='text-align: center; font-size:18px;'>
+Predict salaries using Machine Learning 🚀
+</p>
 """, unsafe_allow_html=True)
-
 # ---------------- SIDEBAR ----------------
 st.sidebar.title("⚙️ Workflow")
 st.sidebar.markdown("""
