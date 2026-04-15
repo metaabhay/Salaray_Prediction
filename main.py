@@ -136,7 +136,7 @@ with tab1:
             if df[col].dtype == "object":
                 avg = df.groupby(col)[target].mean()
             else:
-                bins = pd.cut(df[col], bins=5)
+                bins = pd.cut(df[col], bins=5, include_lowest=True)
                 avg = df.groupby(bins)[target].mean()
                 avg.index = [f"{round(i.left,1)} to {round(i.right,1)}" for i in avg.index]
 
