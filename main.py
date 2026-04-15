@@ -136,8 +136,10 @@ with tab1:
             if df[col].dtype == "object":
                 avg = df.groupby(col)[target].mean()
             else:
-                bins = pd.cut(df[col], bins=[0,2,4,6,8,10])
-                avg.index = ["0-2", "2-4", "4-6", "6-8", "8-10"]
+                bins = pd.cut(df[col], bins=5)
+                avg = df.groupby(bins)[target].mean()
+                avg.index = [f"{int(i.left)} - {int(i.right)}" for i in avg.index]
+
 
             sns.barplot(x=avg.index, y=avg.values, ax=ax)
             ax.set_xlabel(col)
