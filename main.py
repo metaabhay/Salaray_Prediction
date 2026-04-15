@@ -18,30 +18,67 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- UI STYLING ----------------
+# ---------------- DARK THEME CSS ----------------
 st.markdown("""
 <style>
-    .stTabs [data-baseweb="tab"] {
-        font-size:16px;
-        padding:10px;
-    }
-    .stMetric {
-        background-color:#f5f5f5;
-        padding:10px;
-        border-radius:10px;
-    }
+.stApp {
+    background-color: #0e1117;
+    color: #ffffff;
+}
+
+.block-container {
+    padding-top: 2rem;
+}
+
+div[data-testid="stMetric"] {
+    background-color: #1a1f2b;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #2e3440;
+}
+
+.stButton>button {
+    background-color: #00c853;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+
+.stButton>button:hover {
+    background-color: #00e676;
+    color: black;
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: #cfd8dc;
+    font-size: 16px;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #00e676 !important;
+    border-bottom: 2px solid #00e676;
+}
+
+h1, h2, h3 {
+    color: #00e676;
+}
+
+h1 {
+    text-shadow: 0px 0px 20px rgba(0,255,150,0.6);
+}
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------- HEADER ----------------
 st.markdown("""
-<h1 style='text-align: center; color: #4CAF50;'>
-💰 Salary Prediction Dashboard
-</h1>
-<p style='text-align: center; font-size:18px;'>
-Predict salaries using Machine Learning 🚀
+<h1 style='text-align: center;'>💼 Salary Prediction Dashboard</h1>
+<p style='text-align: center; font-size:18px; color:#b0bec5;'>
+Analyze • Train • Predict using Machine Learning 🚀
 </p>
 """, unsafe_allow_html=True)
+
 # ---------------- SIDEBAR ----------------
 st.sidebar.title("⚙️ Workflow")
 st.sidebar.markdown("""
@@ -90,7 +127,7 @@ with tab1:
 
     st.subheader("Feature vs Target")
 
-    # 🔥 SAME LOOP AS YOUR ORIGINAL CODE (UNCHANGED)
+    # 🔥 SAME AS YOUR ORIGINAL (UNCHANGED)
     target = "Salary"
     for col in df.columns:
         if col != target:
@@ -210,7 +247,6 @@ with tab5:
         c3.metric("MAE", f"{mae:.0f}")
         c4.metric("MSE", f"{mse:.0f}")
 
-        # KFold
         kf = KFold(n_splits=5, shuffle=True)
         score = cross_val_score(
             st.session_state["model"],
