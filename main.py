@@ -138,7 +138,7 @@ with tab1:
             else:
                 bins = pd.cut(df[col], bins=5)
                 avg = df.groupby(bins)[target].mean()
-                avg.index = [f"{int(i.left)} - {int(i.right)}" for i in avg.index]
+                avg.index = [f"{round(i.left,1)} to {round(i.right,1)}" for i in avg.index]
 
             sns.barplot(x=avg.index, y=avg.values, ax=ax)
             ax.set_xlabel(col)
